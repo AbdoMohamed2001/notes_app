@@ -11,8 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Notes App',
       theme: ThemeData(
+        fontFamily: 'Poppins',
           brightness: Brightness.dark,
         useMaterial3: true,
       ),
