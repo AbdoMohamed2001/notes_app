@@ -6,8 +6,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: NotesViewBody(),
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: (){},
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(30.0))
+      ),
+      child: Icon(Icons.add,
+      color: Colors.black,
+      ),
+        backgroundColor: Colors.tealAccent,
+      ),
+      body: const NotesViewBody(),
     );
   }
 }
