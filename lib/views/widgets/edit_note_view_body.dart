@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/views/widgets/custom_app_bar.dart';
-import 'package:notes_app/views/widgets/notes_list_view.dart';
+import 'package:notes_app/views/widgets/custom_text_field.dart';
 
-class NotesViewBody extends StatelessWidget {
-  const NotesViewBody({Key? key}) : super(key: key);
+class EditNoteViewBody extends StatelessWidget {
+  const EditNoteViewBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +12,13 @@ class NotesViewBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 40,),
-          CustomAppBar(title: 'Notes',icon: Icons.search_sharp),
+          CustomAppBar(title: 'Edit Note',icon: Icons.done),
           SizedBox(height: 20,),
-          Expanded(child: NotesListView()),
+          CustomTextField(hintText: 'Title'),
+          SizedBox(height: 18,),
+          CustomTextField(hintText: 'Content',maxLines: 5,),
         ],
       ),
     );
   }
 }
-
-
-
