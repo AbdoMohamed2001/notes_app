@@ -8,7 +8,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: (){
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
         showModalBottomSheet(
             context: context,
             builder: (context){
