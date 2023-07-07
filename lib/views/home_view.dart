@@ -9,8 +9,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(onPressed: (){
-
-        showModalBottomSheet(context: context, builder: (context){
+        showModalBottomSheet(
+            context: context,
+            builder: (context){
           return const AddNoteBottomSheet();
         });
       },
