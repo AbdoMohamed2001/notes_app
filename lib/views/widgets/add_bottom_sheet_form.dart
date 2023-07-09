@@ -23,7 +23,11 @@ class _AddNoteBottomSheetFormState extends State<AddNoteBottomSheetForm> {
       key: formKey,
       autovalidateMode: autoValidateMode,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 22.0),
+        padding: EdgeInsets.only(
+          left: 22.0,
+          right: 22,
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
         child: Column(
           children: [
             const SizedBox(
@@ -48,21 +52,26 @@ class _AddNoteBottomSheetFormState extends State<AddNoteBottomSheetForm> {
             const SizedBox(
               height: 62,
             ),
-            CustomButton(
-              onTap: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  var note = NoteModel(
-                    title: title!,
-                    subTitle: subTitle!,
-                    date: DateTime.now().toString(),
-                    color: Colors.black.value,
-                  );
-                  BlocProvider.of<AddNoteCubit>(context).addNote(note);
-                } else {
-                  autoValidateMode = AutovalidateMode.always;
-                  setState(() {});
-                }
+            BlocBuilder<AddNoteCubit, AddNoteState>(
+              builder: (context, state) {
+                return CustomButton(
+                  isLoading: state is AddNoteLoadingState ? true : false,
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      var note = NoteModel(
+                        title: title!,
+                        subTitle: subTitle!,
+                        date: DateTime.now().toString(),
+                        color: Colors.black.value,
+                      );
+                      BlocProvider.of<AddNoteCubit>(context).addNote(note);
+                    } else {
+                      autoValidateMode = AutovalidateMode.always;
+                      setState(() {});
+                    }
+                  },
+                );
               },
             ),
             const SizedBox(
