@@ -1,0 +1,66 @@
+import 'package:flutter/material.dart';
+import 'package:notes_app/views/widgets/custom_button.dart';
+import 'package:notes_app/views/widgets/custom_text_field.dart';
+
+class AddNoteBottomSheetForm extends StatefulWidget {
+  const AddNoteBottomSheetForm({Key? key}) : super(key: key);
+
+  @override
+  State<AddNoteBottomSheetForm> createState() => _AddNoteBottomSheetFormState();
+}
+
+class _AddNoteBottomSheetFormState extends State<AddNoteBottomSheetForm> {
+  GlobalKey<FormState> formKey = GlobalKey();
+  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
+  String? title, subTitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formKey,
+      autovalidateMode: autoValidateMode,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 22.0),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 32,
+            ),
+            CustomTextField(
+              onSaved: (value) {
+                title = value;
+              },
+              hintText: 'Title',
+            ),
+            const SizedBox(
+              height: 18,
+            ),
+            CustomTextField(
+              onSaved: (value) {
+                subTitle = value;
+              },
+              hintText: 'Content',
+              maxLines: 5,
+            ),
+            const SizedBox(
+              height: 62,
+            ),
+            CustomButton(
+              onTap: () {
+                if (formKey.currentState!.validate()) {
+                  formKey.currentState!.save();
+                } else {
+                  autoValidateMode = AutovalidateMode.always;
+                  setState(() {});
+                }
+              },
+            ),
+            const SizedBox(
+              height: 18,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
